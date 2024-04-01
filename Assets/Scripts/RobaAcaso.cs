@@ -16,7 +16,7 @@ public class RobaAcaso : MonoBehaviour {
     private float numeroVirgolettato = 9.99969f;
     private string stringaProva = "Obama";
     private bool boolProva = false;
-    private GameObject obama = null;
+    // private GameObject obama = null;
 
     // Enumerazione per gli stati del giocatore
     public enum StatoGiocatore { VIVO, FERITO, MORTO }
@@ -51,6 +51,9 @@ public class RobaAcaso : MonoBehaviour {
     // Start is called before the first frame update
     void Start()
     {
+        
+        Debug.Log (numeroSpecificato + numeroVirgolettato + stringaProva + boolProva);
+        
         Debug.Log(numero);
         Debug.Log(virgola);
         Debug.Log(a + b);
