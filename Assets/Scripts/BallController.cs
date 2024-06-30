@@ -29,6 +29,10 @@ public class BallController : MonoBehaviour {
 			 if (Input.GetMouseButtonDown(0)) {
 				rb.velocity= new Vector3 (speed,0,0);
 				started = true;
+				SpawnerPlatform.current.cominciaSpawn();
+				{
+					
+				}
 			 }
 		}
 
@@ -36,6 +40,8 @@ if (!Physics.Raycast(transform.position, Vector3.down, 1f)) {
 	gameOver= true;
 	rb.velocity = new Vector3(0, -25f, 0);
 	Camera.main.GetComponent<CameraController>().gameOver = true;
+
+	SpawnerPlatform.current.gameOver = true;
 }
 
 		if (Input.GetMouseButtonDown(0) && !gameOver){
