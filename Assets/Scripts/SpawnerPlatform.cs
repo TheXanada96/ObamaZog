@@ -8,6 +8,7 @@ public class SpawnerPlatform : MonoBehaviour {
 
 
  public GameObject platform;
+ public GameObject diamond;
 Vector3 ultimaPos;
 float size;
 public bool gameOver;
