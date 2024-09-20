@@ -25,9 +25,9 @@ public bool gameOver = false;
 	}
 
 void FollowBall() {
-Vector3 pos = transform.position; // calcola la posizione attuale della camera
-Vector3 targetPos = Ball.transform.position- offset;
-pos = Vector3.Lerp (pos, targetPos, larpRate * Time.deltaTime);
-transform.position = pos;
+	Vector3 pos = transform.position; // calcola la posizione attuale della camera
+	Vector3 targetPos = Ball.transform.position- offset;
+	pos = Vector3.Lerp (pos, targetPos, larpRate * Time.deltaTime);
+	transform.position = pos;
     }
 }

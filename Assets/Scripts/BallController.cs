@@ -44,7 +44,7 @@ if (!Physics.Raycast(transform.position, Vector3.down, 1f)) {
 	SpawnerPlatform.current.gameOver = true;
 }
 
-		if (Input.GetMouseButtonDown(0) && !gameOver){
+	if (Input.GetMouseButtonDown(0) && !gameOver){
 			DirectionalChange();
 		}
 	}
@@ -57,4 +57,10 @@ if (!Physics.Raycast(transform.position, Vector3.down, 1f)) {
 			rb.velocity = new Vector3(0, 0, speed);
 		}
     }
+	void OnTriggerEnter(Collider col)
+	{
+		if (col.gameObject.tag == "Diamond") {
+			Destroy (col.gameObject);
+		}
+	}
 }

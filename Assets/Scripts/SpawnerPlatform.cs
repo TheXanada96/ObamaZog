@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
+using Random = UnityEngine.Random;
 
 public class SpawnerPlatform : MonoBehaviour {
 
@@ -10,6 +11,7 @@ public class SpawnerPlatform : MonoBehaviour {
  public GameObject platform;
  public GameObject diamond;
 Vector3 ultimaPos;
+Vector3 pos;
 float size;
 public bool gameOver;
 public static SpawnerPlatform current;
@@ -29,7 +31,7 @@ void Awake() {
 		//cominciaSpawn();
 	}
 	public void cominciaSpawn(){
-InvokeRepeating("SpawnPlatformer", 1f, 0.2f);
+		InvokeRepeating("SpawnPlatformer", 1f, 0.2f);
 		
 	}
 	// Update is called once per frame
@@ -40,26 +42,38 @@ InvokeRepeating("SpawnPlatformer", 1f, 0.2f);
 		}
 		
 	}
+
+	void CreateDiamond() {
+		int rand = Random.Range(0,4);
+				if (rand < 1)
+					Instantiate(diamond, new Vector3(pos.x, pos.y + 1f, pos.z), diamond.transform.rotation);
+
+	}
 	void SpawnX () {
-	Vector3 pos = ultimaPos;
-	pos.x+=size;
-	ultimaPos = pos;
-	Instantiate (platform, pos, Quaternion.identity);
+		pos = ultimaPos;
+		pos.x+=size;
+		ultimaPos = pos;
+		Instantiate (platform, pos, Quaternion.identity);
+
+		CreateDiamond();
+
 	}
 
 	void SpawnZ () {
-	Vector3 pos = ultimaPos;
-	pos.z+=size;
-	ultimaPos = pos;
-	Instantiate (platform, pos, Quaternion.identity);
-	}
+		pos = ultimaPos;
+		pos.z+=size;
+		ultimaPos = pos;
+		Instantiate (platform, pos, Quaternion.identity);
 
-	void SpawnPlatformer() {
-	int rand = UnityEngine.Random.Range(0,6);
-	
-	if (rand < 3)
-	SpawnX();
-	else
-	SpawnZ();
+		CreateDiamond();
+
+	}
+		void SpawnPlatformer() {
+		int rand = UnityEngine.Random.Range(0,6);
+		
+		if (rand < 3)
+		SpawnX();
+		else
+		SpawnZ();
 	}
 }
