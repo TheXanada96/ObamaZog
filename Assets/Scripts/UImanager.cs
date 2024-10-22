@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -22,5 +23,17 @@ public Text highScore2;
 	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	public void GameStart(){
+		clickText.GetComponent<Animator>().Play ("TextDisappear");
+    	startPanel.GetComponent<Animator>().Play ("StartPanelDisappear");
+	}
+	
+	public void GameOver(){
+		gameOverPanel.SetActive(true);
+	}
+	public void Restart(){
+		SceneManager.LoadScene(0);
 	}
 }
