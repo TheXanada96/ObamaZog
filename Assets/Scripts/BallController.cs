@@ -32,9 +32,7 @@ public GameObject particle;
 				rb.velocity= new Vector3 (speed,0,0);
 				started = true;
 				SpawnerPlatform.current.cominciaSpawn();
-				{
-					
-				}
+				GameManager.current.StartGame();
 			 }
 		}
 
@@ -44,6 +42,8 @@ if (!Physics.Raycast(transform.position, Vector3.down, 1f)) {
 	Camera.main.GetComponent<CameraController>().gameOver = true;
 
 	SpawnerPlatform.current.gameOver = true;
+
+	GameManager.current.GameOver();
 }
 
 	if (Input.GetMouseButtonDown(0) && !gameOver){

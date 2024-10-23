@@ -14,6 +14,12 @@ public GameObject clickText;
 public Text score;
 public Text highScore1;
 public Text highScore2;
+public static UImanager current;
+
+void Awake() {
+	if (current == null)
+		current = this;
+}
 
 	
 	void Start () {
