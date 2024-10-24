@@ -29,16 +29,22 @@ public class ScoreManager : MonoBehaviour {
 		InvokeRepeating("IncrementScore", 0.1f, 0.5f);
 	}
 	public void StopScore (){
-		CancelInvoke ("IncrementScore");
-		//registro l'ultimo score ottenuto
-		PlayerPrefs.SetInt("score",score);
-		//registro l'highScore ottenuto
-		if (PlayerPrefs.HasKey("highScore")){
-			if (score > PlayerPrefs.GetInt("highScore")){
-				PlayerPrefs.SetInt("highScore", score);
-			}
-			else 
-				PlayerPrefs.SetInt("highScore", score);
+	CancelInvoke("IncrementScore");
+	// Registra l'ultimo score ottenuto
+	PlayerPrefs.SetInt("score", score);
+	
+	// Registra l'highScore solo se il punteggio attuale è maggiore dell'highScore salvato
+	if (PlayerPrefs.HasKey("highScore")){
+		if (score > PlayerPrefs.GetInt("highScore")){
+			PlayerPrefs.SetInt("highScore", score);
 		}
 	}
-}
+	else {
+		// Se non esiste un highScore salvato, impostalo
+		PlayerPrefs.SetInt("highScore", score);
+	}
+	
+	// Non dimenticare di salvare le modifiche in PlayerPrefs
+	PlayerPrefs.Save();
+		}
+	}
