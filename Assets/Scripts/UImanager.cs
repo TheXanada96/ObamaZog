@@ -23,7 +23,10 @@ void Awake() {
 
 	
 	void Start () {
-		
+		if (PlayerPrefs.HasKey("highScore"))
+			highScore1.text = "High Score: " + PlayerPrefs.GetInt("highScore");
+		else 
+			highScore1.text = "High Score: 0";
 	}
 	
 	// Update is called once per frame
@@ -37,6 +40,9 @@ void Awake() {
 	}
 	
 	public void GameOver(){
+
+		score.text = PlayerPrefs.GetInt("score").ToString();
+		highScore2.text = PlayerPrefs.GetInt("highScore").ToString();
 		gameOverPanel.SetActive(true);
 	}
 	public void Restart(){
