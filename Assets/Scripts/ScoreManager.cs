@@ -23,6 +23,16 @@ public class ScoreManager : MonoBehaviour {
 	}
 	public void IncrementScore(){
 	score += 1;
+
+	// mostro il punteggio nella Labal
+	UImanager.current.diamondLabel.text = score.ToString();
+	}
+
+	public void DiamondScore(){
+		int rand = Random.Range(5,15);
+		score += rand;
+
+		UImanager.current.diamondLabel.text = score.ToString();
 	}
 
 	public void StartScore(){

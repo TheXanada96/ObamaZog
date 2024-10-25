@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,6 +11,8 @@ public class UImanager : MonoBehaviour {
 public GameObject startPanel;
 public GameObject gameOverPanel;
 public GameObject clickText;
+public GameObject diamondText;
+public Text diamondLabel;
 public Text score;
 public Text highScore1;
 public Text highScore2;
@@ -37,6 +39,8 @@ void Awake() {
 	public void GameStart(){
 		clickText.GetComponent<Animator>().Play ("TextDisappear");
     	startPanel.GetComponent<Animator>().Play ("StartPanelDisappear");
+
+		diamondText.SetActive(true);
 	}
 	
 	public void GameOver(){
@@ -44,6 +48,8 @@ void Awake() {
 		score.text = PlayerPrefs.GetInt("score").ToString();
 		highScore2.text = PlayerPrefs.GetInt("highScore").ToString();
 		gameOverPanel.SetActive(true);
+
+		diamondText.SetActive(false);
 	}
 	public void Restart(){
 		SceneManager.LoadScene(0);
