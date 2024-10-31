@@ -26,13 +26,24 @@ public class ScoreManager : MonoBehaviour {
 
 	// mostro il punteggio nella Labal
 	UImanager.current.diamondLabel.text = score.ToString();
-	}
 
+	if (PlayerPrefs.HasKey("highScore")){
+		if (score > PlayerPrefs.GetInt("highScore")) {
+			UImanager.current.highScoreText.SetActive(true);
+			}
+		}
+	}
 	public void DiamondScore(){
 		int rand = Random.Range(5,15);
 		score += rand;
 
 		UImanager.current.diamondLabel.text = score.ToString();
+		
+		if (PlayerPrefs.HasKey("highScore")){
+		if (score > PlayerPrefs.GetInt("highScore")) {
+			UImanager.current.highScoreText.SetActive(true);
+			}
+		}
 	}
 
 	public void StartScore(){

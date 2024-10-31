@@ -12,6 +12,7 @@ public GameObject startPanel;
 public GameObject gameOverPanel;
 public GameObject clickText;
 public GameObject diamondText;
+public GameObject highScoreText;
 public Text diamondLabel;
 public Text score;
 public Text highScore1;
