@@ -6,6 +6,9 @@ public class ScoreManager : MonoBehaviour {
 	public static ScoreManager current;
 	int score;
 	int highScore; 
+	bool highScorePlayed;
+	public AudioClip highScoreSFX;
+	public AudioClip DiamondSFX;
 
 	void Awake() {
 	if (current == null)
@@ -15,6 +18,7 @@ public class ScoreManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		score = 0;
+		highScorePlayed = false;
 	}
 	
 	// Update is called once per frame
@@ -26,10 +30,13 @@ public class ScoreManager : MonoBehaviour {
 
 	// mostro il punteggio nella Labal
 	UImanager.current.diamondLabel.text = score.ToString();
+	
 
 	if (PlayerPrefs.HasKey("highScore")){
-		if (score > PlayerPrefs.GetInt("highScore")) {
+		if (score > PlayerPrefs.GetInt("highScore") && !highScorePlayed) {
 			UImanager.current.highScoreText.SetActive(true);
+			AudioManager.current.PlaySound(highScoreSFX);
+			highScorePlayed = true;
 			}
 		}
 	}
@@ -38,10 +45,13 @@ public class ScoreManager : MonoBehaviour {
 		score += rand;
 
 		UImanager.current.diamondLabel.text = score.ToString();
+		AudioManager.current.PlaySound(DiamondSFX);
 		
-		if (PlayerPrefs.HasKey("highScore")){
-		if (score > PlayerPrefs.GetInt("highScore")) {
+		if (PlayerPrefs.HasKey("highScore") && !highScorePlayed){
+			if (score > PlayerPrefs.GetInt("highScore")) {
 			UImanager.current.highScoreText.SetActive(true);
+			AudioManager.current.PlaySound(highScoreSFX);
+			highScorePlayed = true;
 			}
 		}
 	}
