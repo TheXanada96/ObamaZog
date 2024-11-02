@@ -67,6 +67,8 @@ if (!Physics.Raycast(transform.position, Vector3.down, 1f)) {
 
 			Destroy (col.gameObject);
 			Destroy (part, 2f);
+
+			ScoreManager.current.DiamondScore();
 		}
 	}
 }

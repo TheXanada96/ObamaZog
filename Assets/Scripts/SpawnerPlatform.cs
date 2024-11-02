@@ -76,4 +76,5 @@ void Awake() {
 		else
 		SpawnZ();
 	}
+	
 }

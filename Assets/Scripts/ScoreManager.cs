@@ -41,20 +41,34 @@ public class ScoreManager : MonoBehaviour {
 		}
 	}
 	public void DiamondScore(){
-		int rand = Random.Range(5,15);
-		score += rand;
+    // Genera un numero casuale tra 5 e 15
+    int rand = Random.Range(5, 15);
+    score += rand;
 
-		UImanager.current.diamondLabel.text = score.ToString();
-		AudioManager.current.PlaySound(DiamondSFX);
-		
-		if (PlayerPrefs.HasKey("highScore") && !highScorePlayed){
-			if (score > PlayerPrefs.GetInt("highScore")) {
-			UImanager.current.highScoreText.SetActive(true);
-			AudioManager.current.PlaySound(highScoreSFX);
-			highScorePlayed = true;
-			}
-		}
-	}
+    // Aggiorna l'etichetta del punteggio
+    UImanager.current.diamondLabel.text = score.ToString();
+    
+    // Riproduce il suono per l'ottenimento di un diamante
+    AudioManager.current.PlaySound(DiamondSFX);
+
+    // Controlla se il nuovo punteggio è maggiore dell'high score e se il suono high score non è già stato riprodotto
+    if (PlayerPrefs.HasKey("highScore")) {
+        if (score > PlayerPrefs.GetInt("highScore") && !highScorePlayed) {
+            UImanager.current.highScoreText.SetActive(true);
+            AudioManager.current.PlaySound(highScoreSFX);
+            highScorePlayed = true; // Imposta highScorePlayed a true per evitare di riprodurre di nuovo il suono
+        }
+    } else {
+        // Se non esiste un highScore salvato, imposta l'highScore e mostra il messaggio
+        PlayerPrefs.SetInt("highScore", score);
+        UImanager.current.highScoreText.SetActive(true);
+        AudioManager.current.PlaySound(highScoreSFX);
+        highScorePlayed = true;
+    }
+
+    // Salva l'high score nel caso sia stato superato
+    PlayerPrefs.Save();
+}
 
 	public void StartScore(){
 		InvokeRepeating("IncrementScore", 0.1f, 0.5f);
