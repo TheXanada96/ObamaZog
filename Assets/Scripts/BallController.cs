@@ -6,6 +6,8 @@ public class BallController : MonoBehaviour {
 
 public GameObject particle;
 
+public AudioClip directionalSound;
+
 [SerializeField]
 	private float speed;
 
@@ -48,6 +50,7 @@ if (!Physics.Raycast(transform.position, Vector3.down, 1f)) {
 
 	if (Input.GetMouseButtonDown(0) && !gameOver){
 			DirectionalChange();
+			AudioManager.current.PlaySound(directionalSound);
 		}
 	}
 

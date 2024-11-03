@@ -4,28 +4,29 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 	public static GameManager current;
+	public AudioClip gameOverSFX;
 
-void Awake() {
-	if (current == null)
-		current = this;
+	private bool isGameOver = false; // Variabile per tracciare se il gioco è finito
+
+	void Awake() {
+		if (current == null)
+			current = this;
 	}
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-	public void StartGame(){
+	// Funzione per avviare il gioco
+	public void StartGame() {
 		UImanager.current.GameStart();
 		ScoreManager.current.StartScore();
+		isGameOver = false; // Resetta isGameOver quando il gioco inizia
 	}
-	public void GameOver(){
-		UImanager.current.GameOver();
-		ScoreManager.current.StopScore();
+
+	// Funzione per terminare il gioco
+	public void GameOver() {
+		if (!isGameOver) { // Verifica se il gioco è già finito
+			isGameOver = true; // Imposta isGameOver su true per evitare chiamate ripetute
+			UImanager.current.GameOver();
+			ScoreManager.current.StopScore();
+			AudioManager.current.PlaySound(gameOverSFX);
+		}
 	}
 }
-
