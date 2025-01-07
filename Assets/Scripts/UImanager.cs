@@ -18,6 +18,8 @@ public class UImanager : MonoBehaviour {
     public Text highScore2; // Riferimento al componente Text per visualizzare l'high score finale
     public static UImanager current; // Riferimento statico per accedere globalmente all'istanza corrente
 
+    public GameObject Test_MYCUS;
+
     void Awake() {
         // Inizializza l'istanza statica se non è già presente
         if (current == null)
