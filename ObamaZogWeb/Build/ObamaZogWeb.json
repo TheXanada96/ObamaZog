@@ -1,0 +1,10 @@
+{
+"TOTAL_MEMORY": 268435456,
+"dataUrl": "ObamaZogWeb.data.unityweb",
+"asmCodeUrl": "ObamaZogWeb.asm.code.unityweb",
+"asmMemoryUrl": "ObamaZogWeb.asm.memory.unityweb",
+"asmFrameworkUrl": "ObamaZogWeb.asm.framework.unityweb",
+"backgroundUrl": "ObamaZogWeb.jpg",
+"splashScreenStyle": "Dark",
+"backgroundColor": "#FFFFFF"
+}

@@ -33,6 +33,28 @@ public class UImanager : MonoBehaviour
             highScore1.text = "High Score: 0"; // Se non esiste, mostra 0
     }
 
+    void Update()
+    {
+        // Controlla se il tasto R è stato premuto
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ResetHighScore(); // Chiama la funzione per resettare l'high score
+        }
+    }
+
+    // Funzione per resettare l'high score
+    public void ResetHighScore()
+    {
+        PlayerPrefs.DeleteKey("highScore"); // Elimina la chiave "highScore" da PlayerPrefs
+        PlayerPrefs.Save(); // Salva le modifiche
+
+        // Aggiorna i testi dell'high score nell'interfaccia utente
+        highScore1.text = "High Score: 0";
+        highScore2.text = "0";
+
+        Debug.Log("High score resettato!"); // Debug per confermare il reset
+    }
+
     // Funzione per avviare il gioco
     public void GameStart()
     {
@@ -51,6 +73,15 @@ public class UImanager : MonoBehaviour
         // Ottieni il punteggio corrente dal ScoreManager
         int currentScore = ScoreManager.current.GetCurrentScore();
         int highScore = PlayerPrefs.GetInt("highScore", 0);
+
+        // Controlla se il punteggio corrente è maggiore dell'high score
+        if (currentScore > highScore)
+        {
+            // Aggiorna l'high score
+            highScore = currentScore;
+            PlayerPrefs.SetInt("highScore", highScore); // Salva il nuovo high score
+            PlayerPrefs.Save(); // Assicurati che i dati vengano salvati immediatamente
+        }
 
         // Mostra il punteggio finale e l'high score
         score.text = currentScore.ToString();
